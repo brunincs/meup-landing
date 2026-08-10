@@ -1066,8 +1066,8 @@ function init() {
     updateWhatsAppLink();
   });
 
-  // Setup autocomplete - Destino (Mundo)
-  setupAutocomplete(destInput, destList, AIRPORTS_WORLD, (selected) => {
+  // Setup autocomplete - Destino (Brasil + Mundo)
+  setupAutocomplete(destInput, destList, [...AIRPORTS_BRAZIL, ...AIRPORTS_WORLD], (selected) => {
     selectedDest = selected;
     updateRouteCodes();
     updateWhatsAppLink();
