@@ -286,13 +286,70 @@ section{position:relative}
 .nude h2{color:var(--roxo-profundo)}
 
 /* ---------- Público (cards) ---------- */
-.aud-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-.aud{background:var(--branco);border:1px solid rgba(50,17,63,.1);border-radius:14px;padding:38px 32px;
-  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
-.aud:hover{transform:translateY(-6px);box-shadow:0 24px 48px -24px rgba(0,0,0,.18);border-color:rgba(162,121,55,.5)}
+.quem-section{padding-top:clamp(48px,6vw,80px)}
+.aud-wrapper{position:relative}
+.aud-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;position:relative;z-index:2}
+
+/* Linha dourada pontilhada conectando os cards */
+.aud-line{
+  position:absolute;top:50%;left:8%;right:8%;height:2px;z-index:1;
+  background:repeating-linear-gradient(90deg,var(--ouro) 0 8px,transparent 8px 16px);
+  opacity:0;transform:scaleX(0);transform-origin:left;
+  transition:none;
+}
+.aud-line.visible{opacity:.4;transform:scaleX(1);transition:transform 1.2s var(--ease),opacity .6s}
+
+/* Aviãozinho na linha */
+.aud-plane{
+  position:absolute;top:50%;left:4%;z-index:3;
+  font-size:1.4rem;color:var(--ouro);transform:translateY(-50%);
+  opacity:0;
+}
+.aud-plane.fly{
+  animation:flyAcross 2.4s var(--ease) forwards;
+}
+@keyframes flyAcross{
+  0%{left:4%;opacity:0}
+  8%{opacity:1}
+  92%{opacity:1}
+  100%{left:92%;opacity:0}
+}
+
+/* Cards */
+.aud{
+  background:var(--branco);border:1px solid rgba(50,17,63,.1);border-radius:14px;padding:38px 32px;
+  position:relative;overflow:hidden;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s;
+}
+
+/* Hairline dourada no topo (desenha no hover) */
+.aud::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--ouro),var(--ouro-claro));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .4s var(--ease);
+}
+.aud:hover::before{transform:scaleX(1)}
+.aud:hover{transform:translateY(-6px);box-shadow:0 24px 48px -24px rgba(0,0,0,.18);border-color:rgba(162,121,55,.4)}
+
+/* Stagger fade-up */
+.aud.reveal-card{opacity:0;transform:translateY(24px)}
+.aud.reveal-card.in{opacity:1;transform:translateY(0);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.aud.reveal-card:nth-child(1).in{transition-delay:0s}
+.aud.reveal-card:nth-child(2).in{transition-delay:.1s}
+.aud.reveal-card:nth-child(3).in{transition-delay:.2s}
+
 .aud .num{font-family:var(--font-display);font-size:1.1rem;color:var(--ouro)}
 .aud h3{font-size:1.4rem;color:var(--roxo-profundo);margin:16px 0 12px}
 .aud p{color:#5c5250;font-size:.98rem}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){
+  .aud-line{opacity:.4;transform:scaleX(1)}
+  .aud-plane{display:none}
+  .aud.reveal-card{opacity:1;transform:none}
+  .aud::before{transform:scaleX(1)}
+}
 
 /* ---------- Diferenciais ---------- */
 .feat{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:46px 0;border-bottom:1px solid rgba(237,240,241,.1)}
@@ -301,9 +358,133 @@ section{position:relative}
 .feat-index{font-family:var(--font-display);font-size:3.2rem;color:rgba(162,121,55,.55);line-height:1}
 .feat-text h3{font-size:1.7rem;color:var(--branco-gelo);margin:14px 0 14px}
 .feat-text p{color:var(--cinza-rosado);max-width:48ch}
-.feat-visual{height:220px;border-radius:14px;background:linear-gradient(150deg,#3d1a4b,#26102f);
-  border:1px solid rgba(162,121,55,.25);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.feat-visual::before{content:"\2708";font-size:5rem;color:rgba(162,121,55,.22);position:absolute}
+
+/* Slide-in animations */
+.feat.reveal{opacity:0}
+.feat.reveal .feat-text{opacity:0;transform:translateX(-30px)}
+.feat.reveal .feat-visual{opacity:0;transform:translateX(30px)}
+.feat.flip.reveal .feat-text{transform:translateX(30px)}
+.feat.flip.reveal .feat-visual{transform:translateX(-30px)}
+.feat.reveal.in{opacity:1}
+.feat.reveal.in .feat-text,.feat.reveal.in .feat-visual{
+  opacity:1;transform:translateX(0);
+  transition:opacity .6s var(--ease),transform .6s var(--ease);
+}
+.feat.reveal.in .feat-visual{transition-delay:.15s}
+
+/* Visual container */
+.feat-visual{
+  height:220px;border-radius:14px;
+  background:linear-gradient(150deg,#3d1a4b,#26102f);
+  border:1px solid rgba(162,121,55,.25);
+  position:relative;overflow:hidden;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+}
+.feat-visual::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--ouro),var(--ouro-claro));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .4s var(--ease);
+}
+.feat-visual:hover{transform:translateY(-4px);box-shadow:0 20px 40px -16px rgba(0,0,0,.4)}
+.feat-visual:hover::before{transform:scaleX(1)}
+
+
+/* ═══ Mini-visual 1: Curadoria (comparação de rotas) ═══ */
+.visual-curadoria{display:flex;flex-direction:column;gap:10px;padding:28px 24px 44px;align-items:stretch}
+.route-option{
+  display:flex;align-items:center;gap:12px;padding:12px 16px;
+  background:rgba(50,17,63,.5);border:1px solid rgba(162,121,55,.2);border-radius:8px;
+  font-family:var(--font-ui);font-size:.8rem;color:var(--cinza-rosado);
+  transition:border-color .2s,background .2s;
+}
+.route-option.best{
+  background:rgba(162,121,55,.15);border-color:var(--ouro);color:var(--branco-gelo);
+}
+.route-option .codes{font-weight:600;color:var(--branco-gelo);min-width:90px}
+.route-option .codes span{color:var(--ouro)}
+.route-option .detail{flex:1;font-size:.75rem}
+.route-option .tag{
+  font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;
+  padding:4px 8px;border-radius:4px;background:var(--ouro);color:#1f1f1f;
+}
+
+/* ═══ Mini-visual 2: Suporte WhatsApp ═══ */
+.visual-whatsapp{display:flex;flex-direction:column;gap:10px;padding:28px 24px 44px;align-items:flex-start}
+.wpp-bubble{
+  max-width:85%;padding:12px 16px;border-radius:12px 12px 12px 4px;
+  background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.3);
+  font-family:var(--font-body);font-size:.85rem;color:var(--branco-gelo);line-height:1.5;
+}
+.wpp-bubble.meup{
+  background:rgba(162,121,55,.18);border-color:rgba(162,121,55,.4);
+  border-radius:12px 12px 4px 12px;align-self:flex-end;
+}
+.wpp-time{font-size:.65rem;color:var(--cinza-rosado);margin-top:4px;text-align:right}
+.wpp-sender{font-family:var(--font-ui);font-size:.7rem;font-weight:600;color:var(--ouro);margin-bottom:2px}
+
+/* ═══ Mini-visual 3: Logística (itinerário) ═══ */
+.visual-logistica{padding:24px 20px 44px}
+.itin-card{
+  background:rgba(50,17,63,.6);border:1px solid rgba(162,121,55,.25);border-radius:10px;
+  padding:16px 18px;
+}
+.itin-header{
+  font-family:var(--font-ui);font-size:.7rem;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ouro);margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.itin-header::before{content:"✈";font-size:.8rem}
+.itin-row{display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid rgba(237,240,241,.08)}
+.itin-row:first-of-type{border-top:none}
+.itin-leg{
+  font-family:var(--font-ui);font-size:.65rem;font-weight:600;text-transform:uppercase;
+  color:var(--cinza-rosado);min-width:40px;
+}
+.itin-route{display:flex;align-items:center;gap:8px;flex:1}
+.itin-code{font-family:var(--font-display);font-size:1.1rem;color:var(--branco-gelo)}
+.itin-arrow{color:var(--ouro);font-size:.75rem}
+.itin-date{font-family:var(--font-ui);font-size:.75rem;color:var(--cinza-rosado)}
+
+/* ═══ Mini-visual 4: Selo Cadastur ═══ */
+.visual-cadastur{display:flex;align-items:center;justify-content:center;padding:24px 20px 44px}
+.cadastur-badge{
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  padding:28px 36px;background:rgba(50,17,63,.6);
+  border:2px solid var(--ouro);border-radius:14px;
+  position:relative;
+}
+.cadastur-badge::before{
+  content:"";position:absolute;inset:6px;
+  border:1px solid rgba(162,121,55,.3);border-radius:10px;
+}
+.cadastur-shield{font-size:2.4rem;color:var(--ouro)}
+.cadastur-text{text-align:center}
+.cadastur-text .title{
+  font-family:var(--font-display);font-size:1.1rem;font-weight:600;
+  color:var(--branco-gelo);letter-spacing:.02em;
+}
+.cadastur-text .sub{
+  font-family:var(--font-ui);font-size:.7rem;color:var(--cinza-rosado);
+  margin-top:4px;letter-spacing:.08em;text-transform:uppercase;
+}
+
+/* Responsive diferenciais */
+@media(max-width:900px){
+  .feat{grid-template-columns:1fr;gap:28px;text-align:center}
+  .feat.flip .feat-text{order:0}
+  .feat-visual{height:200px}
+  .feat.reveal .feat-text,.feat.reveal .feat-visual,
+  .feat.flip.reveal .feat-text,.feat.flip.reveal .feat-visual{transform:translateY(20px);transform:translateX(0)}
+  .route-option{padding:10px 12px}
+  .route-option .codes{min-width:70px;font-size:.75rem}
+}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){
+  .feat.reveal,.feat.reveal .feat-text,.feat.reveal .feat-visual{opacity:1;transform:none}
+  .feat-visual::before{transform:scaleX(1)}
+}
 
 /* ---------- Jornada ---------- */
 .journey{position:relative}
@@ -570,29 +751,33 @@ footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(1
 </div>
 
 <!-- PARA QUEM -->
-<section class="section-pad light" id="quem">
+<section class="section-pad light quem-section" id="quem">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow dark">Para quem atendemos</span>
-      <h2>Feito para quem não pode errar uma reserva.</h2>
+      <span class="eyebrow dark">Quem atendemos</span>
+      <h2>Sua viagem tem um compromisso. A Me,up cuida do resto.</h2>
       <p class="lead on-light">Atendimento consultivo e premium para agendas que não admitem imprevisto.</p>
     </div>
-    <div class="aud-grid">
-      <article class="aud reveal">
-        <div class="num">01</div>
-        <h3>Empresas &amp; Times Executivos</h3>
-        <p>Suporte estratégico a secretárias e assistentes que não podem errar em uma reserva nem perder tempo comparando voos.</p>
-      </article>
-      <article class="aud reveal">
-        <div class="num">02</div>
-        <h3>Profissionais de Alta Performance</h3>
-        <p>Médicos, advogados e consultores com agendas intensas, que precisam de eficiência e tranquilidade em cada trajeto.</p>
-      </article>
-      <article class="aud reveal">
-        <div class="num">03</div>
-        <h3>Viagens de Objetivo Definido</h3>
-        <p>Reuniões, eventos, congressos, tratamentos médicos e urgências — quando chegar bem é o que realmente importa.</p>
-      </article>
+    <div class="aud-wrapper" id="audWrapper">
+      <div class="aud-line" id="audLine"></div>
+      <span class="aud-plane" id="audPlane">&#9992;</span>
+      <div class="aud-grid">
+        <article class="aud reveal-card">
+          <div class="num">01</div>
+          <h3>Empresas &amp; Times Executivos</h3>
+          <p>Suporte estratégico a secretárias e assistentes que não podem errar em uma reserva nem perder tempo comparando voos.</p>
+        </article>
+        <article class="aud reveal-card">
+          <div class="num">02</div>
+          <h3>Profissionais de Alta Performance</h3>
+          <p>Médicos, advogados e consultores com agendas intensas, que precisam de eficiência e tranquilidade em cada trajeto.</p>
+        </article>
+        <article class="aud reveal-card">
+          <div class="num">03</div>
+          <h3>Viagens de Objetivo Definido</h3>
+          <p>Reuniões, eventos, congressos, tratamentos médicos e urgências — quando chegar bem é o que realmente importa.</p>
+        </article>
+      </div>
     </div>
   </div>
 </section>
@@ -610,7 +795,21 @@ footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(1
         <h3>Curadoria inteligente</h3>
         <p>A melhor rota, no melhor horário, pelo melhor custo. Analisamos as opções para que você só receba a decisão certa.</p>
       </div>
-      <div class="feat-visual"></div>
+      <div class="feat-visual visual-curadoria">
+        <div class="route-option">
+          <span class="codes">GRU <span>→</span> LIS</span>
+          <span class="detail">1 conexão · 14h20</span>
+        </div>
+        <div class="route-option best">
+          <span class="codes">GRU <span>→</span> LIS</span>
+          <span class="detail">Direto · 9h45</span>
+          <span class="tag">Melhor</span>
+        </div>
+        <div class="route-option">
+          <span class="codes">GRU <span>→</span> LIS</span>
+          <span class="detail">2 conexões · 18h10</span>
+        </div>
+      </div>
     </div>
     <div class="feat flip reveal">
       <div class="feat-text">
@@ -618,7 +817,17 @@ footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(1
         <h3>Suporte humano real</h3>
         <p>Atendimento direto no WhatsApp, em cada etapa da viagem. Uma pessoa resolvendo, não um robô respondendo.</p>
       </div>
-      <div class="feat-visual"></div>
+      <div class="feat-visual visual-whatsapp">
+        <div class="wpp-bubble">
+          Oi! Meu voo foi cancelado, o que faço?
+          <div class="wpp-time">10:32</div>
+        </div>
+        <div class="wpp-bubble meup">
+          <div class="wpp-sender">Me,up</div>
+          Já estou verificando. Encontrei outro voo no mesmo horário, sem custo extra. Confirmo?
+          <div class="wpp-time">10:34</div>
+        </div>
+      </div>
     </div>
     <div class="feat reveal">
       <div class="feat-text">
@@ -626,7 +835,29 @@ footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(1
         <h3>Logística personalizada</h3>
         <p>Pensamos no seu compromisso, não apenas no destino. Cada trajeto é planejado em torno do que você precisa cumprir.</p>
       </div>
-      <div class="feat-visual"></div>
+      <div class="feat-visual visual-logistica">
+        <div class="itin-card">
+          <div class="itin-header">Seu itinerário</div>
+          <div class="itin-row">
+            <span class="itin-leg">Ida</span>
+            <div class="itin-route">
+              <span class="itin-code">GRU</span>
+              <span class="itin-arrow">→</span>
+              <span class="itin-code">FCO</span>
+            </div>
+            <span class="itin-date">15 Set</span>
+          </div>
+          <div class="itin-row">
+            <span class="itin-leg">Volta</span>
+            <div class="itin-route">
+              <span class="itin-code">FCO</span>
+              <span class="itin-arrow">→</span>
+              <span class="itin-code">GRU</span>
+            </div>
+            <span class="itin-date">22 Set</span>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="feat flip reveal">
       <div class="feat-text">
@@ -634,7 +865,15 @@ footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(1
         <h3>Segurança garantida</h3>
         <p>Processos profissionais, registro Cadastur e histórico de confiança. Viajar com a Me,up é viajar sem risco.</p>
       </div>
-      <div class="feat-visual"></div>
+      <div class="feat-visual visual-cadastur">
+        <div class="cadastur-badge">
+          <span class="cadastur-shield">&#128737;</span>
+          <div class="cadastur-text">
+            <div class="title">Cadastur</div>
+            <div class="sub">Agência Registrada</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1188,6 +1427,43 @@ const io = new IntersectionObserver(
   { threshold: 0.15 }
 );
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// ══════════════════════════════════════════════════════════════════════════════
+// ANIMAÇÃO SEÇÃO "PARA QUEM" - linha dourada + avião + stagger cards
+// ══════════════════════════════════════════════════════════════════════════════
+const audWrapper = document.getElementById('audWrapper');
+const audLine = document.getElementById('audLine');
+const audPlane = document.getElementById('audPlane');
+const audCards = document.querySelectorAll('.aud.reveal-card');
+
+// Respeitar prefers-reduced-motion
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (audWrapper && !prefersReducedMotion) {
+  const audObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // 1. Mostrar linha
+          audLine.classList.add('visible');
+          // 2. Avião voa após linha começar
+          setTimeout(() => audPlane.classList.add('fly'), 300);
+          // 3. Cards aparecem em stagger
+          audCards.forEach((card, i) => {
+            setTimeout(() => card.classList.add('in'), 600 + i * 100);
+          });
+          audObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+  audObserver.observe(audWrapper);
+} else if (audWrapper) {
+  // Reduced motion: mostrar tudo imediatamente
+  audLine.classList.add('visible');
+  audCards.forEach(card => card.classList.add('in'));
+}
 </script>
 </body>
 </html>
