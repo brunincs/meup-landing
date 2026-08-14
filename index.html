@@ -328,6 +328,50 @@ section{position:relative}
 .manifesto blockquote b{color:var(--ouro-claro);font-style:normal}
 .manifesto .sig{margin-top:34px;font-family:var(--font-ui);font-size:.85rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cinza-rosado)}
 
+/* ---------- Depoimentos ---------- */
+.testimonials{background:var(--branco-gelo);color:var(--grafite)}
+.testimonials h2{color:var(--roxo-profundo)}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.test-card{
+  background:var(--branco);border:1px solid rgba(50,17,63,.08);border-radius:14px;
+  padding:32px 28px;position:relative;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+}
+.test-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px -20px rgba(0,0,0,.12)}
+.test-card::before{
+  content:"\201C";position:absolute;top:18px;left:24px;
+  font-family:var(--font-display);font-size:3.5rem;line-height:1;
+  color:var(--ouro);opacity:.5;
+}
+.test-card blockquote{
+  font-family:var(--font-body);font-size:.98rem;line-height:1.65;
+  color:#3a3a3a;margin:0 0 18px;padding-top:24px;font-style:italic;
+}
+.test-card cite{
+  font-family:var(--font-ui);font-size:.8rem;font-style:normal;
+  color:var(--cinza-rosado);display:block;
+}
+.test-card cite strong{color:var(--roxo-profundo);font-weight:600}
+.test-card.featured{
+  grid-column:span 2;background:var(--nude);border-color:rgba(162,121,55,.18);
+}
+.test-card.featured blockquote{font-size:1.05rem}
+.test-card.verified{border-color:rgba(162,121,55,.3)}
+.test-card.verified::after{
+  content:"";position:absolute;top:16px;right:16px;
+  width:20px;height:20px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a27937'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E") no-repeat center;
+  opacity:.7;
+}
+@media(max-width:900px){
+  .test-grid{grid-template-columns:1fr 1fr;gap:18px}
+  .test-card.featured{grid-column:span 2}
+}
+@media(max-width:600px){
+  .test-grid{grid-template-columns:1fr}
+  .test-card.featured{grid-column:span 1}
+}
+
 /* ---------- CTA final ---------- */
 .finalcta{background:linear-gradient(150deg,#3a1548,#25102f);border-radius:22px;padding:clamp(48px,7vw,84px);
   text-align:center;border:1px solid rgba(162,121,55,.28);box-shadow:0 50px 90px -50px rgba(0,0,0,.7)}
@@ -638,6 +682,38 @@ footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(1
   <div class="wrap reveal">
     <blockquote>Viajar não pode ser um risco. Somos a ponte entre o <b>compromisso</b> e o <b>destino</b> — com curadoria estratégica, economia real e suporte humano em cada etapa. Porque para quem não pode errar, confiança não é detalhe: é o diferencial que muda tudo.</blockquote>
     <div class="sig">Me,up Viagens</div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="section-pad testimonials" id="depoimentos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow dark">Depoimentos</span>
+      <h2>Quem viaja com a Me,up, viaja tranquilo.</h2>
+    </div>
+    <div class="test-grid">
+      <article class="test-card reveal">
+        <blockquote>Voo cancelado em Guarulhos, e a Me,up conseguiu outro voo sem custo no mesmo dia.</blockquote>
+        <cite><strong>Cliente Me,up</strong> · voo remarcado no mesmo dia</cite>
+      </article>
+      <article class="test-card reveal">
+        <blockquote>Cheguei na Itália sem me preocupar com perrengues. Obrigada, Me,up.</blockquote>
+        <cite><strong>Cliente Me,up</strong> · viagem à Itália</cite>
+      </article>
+      <article class="test-card reveal">
+        <blockquote>Até te conhecer eu resolvia tudo; agora vivo no maior sossego com a Me,up.</blockquote>
+        <cite><strong>Cliente Me,up</strong></cite>
+      </article>
+      <article class="test-card featured reveal">
+        <blockquote>A nota não pode ser diferente de 10. Atendeu perfeitamente o que eu procurava — viajar com uma família de 4 pessoas não é fácil, e a indicação foi fantástica. No planejamento da próxima, vamos contar com vocês.</blockquote>
+        <cite><strong>Cliente Me,up</strong> · viagem em família</cite>
+      </article>
+      <article class="test-card verified reveal">
+        <blockquote>Uma startup que encontra pra mim as melhores oportunidades para viajar, economizando muito nas passagens. O atendimento é top: sempre buscam a melhor estratégia pra sua viagem.</blockquote>
+        <cite><strong>Jenni</strong> · @jenniduarte12</cite>
+      </article>
+    </div>
   </div>
 </section>
 
