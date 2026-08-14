@@ -487,17 +487,78 @@ section{position:relative}
 }
 
 /* ---------- Jornada ---------- */
-.journey{position:relative}
-.journey .track{position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(180deg,transparent,var(--ouro) 12%,var(--ouro) 88%,transparent);transform:translateX(-50%)}
+.jornada-section{padding-top:clamp(48px,6vw,72px)}
+.journey{position:relative;padding:20px 0 40px}
+
+/* Track base (gray) + progress (gold overlay) */
+.journey .track{
+  position:absolute;left:50%;top:0;bottom:0;width:2px;
+  background:rgba(162,121,55,.2);transform:translateX(-50%);
+}
+.journey .track-progress{
+  position:absolute;left:50%;top:0;width:2px;height:0;
+  background:var(--ouro);transform:translateX(-50%);
+  transition:height .1s linear;
+}
+
+/* Aviãozinho que desce com scroll */
+.journey-plane{
+  position:absolute;left:50%;top:0;
+  transform:translateX(-50%) rotate(90deg);
+  font-size:1.2rem;color:var(--ouro);z-index:3;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.2));
+  transition:top .1s linear;
+}
+
+/* Steps */
 .step{position:relative;width:calc(50% - 50px);padding:26px 0}
 .step:nth-child(odd){margin-left:auto;text-align:left;padding-left:40px}
 .step:nth-child(even){text-align:right;padding-right:40px}
-.step .dot{position:absolute;top:34px;width:16px;height:16px;border-radius:50%;background:var(--ouro);box-shadow:0 0 0 6px rgba(162,121,55,.18)}
+
+/* Dots - iniciam apagados, acendem quando ativados */
+.step .dot{
+  position:absolute;top:34px;width:16px;height:16px;border-radius:50%;
+  background:rgba(162,121,55,.3);
+  box-shadow:0 0 0 6px rgba(162,121,55,.08);
+  transition:background .3s var(--ease),box-shadow .3s var(--ease),transform .3s var(--ease);
+}
+.step .dot.lit{
+  background:var(--ouro);
+  box-shadow:0 0 0 6px rgba(162,121,55,.25),0 0 16px rgba(162,121,55,.4);
+  transform:scale(1.1);
+}
 .step:nth-child(odd) .dot{left:-48px}
 .step:nth-child(even) .dot{right:-48px}
+
+/* Step content */
 .step h3{font-size:1.5rem;color:var(--roxo-profundo)}
 .step .st-label{font-family:var(--font-ui);font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ouro);margin-bottom:8px}
 .step p{color:#5c5250;margin-top:8px}
+
+/* Step reveal animation */
+.step.step-reveal{opacity:0;transform:translateY(20px)}
+.step.step-reveal.in{opacity:1;transform:translateY(0);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.step:nth-child(odd).step-reveal{transform:translateX(20px)}
+.step:nth-child(even).step-reveal{transform:translateX(-20px)}
+.step:nth-child(odd).step-reveal.in,.step:nth-child(even).step-reveal.in{transform:translateX(0)}
+
+/* Mobile: linha à esquerda, coluna única */
+@media(max-width:768px){
+  .journey .track,.journey .track-progress{left:20px;transform:none}
+  .journey-plane{left:20px;transform:translateX(-50%) rotate(90deg)}
+  .step{width:100%;text-align:left;padding-left:50px;padding-right:0;margin-left:0}
+  .step:nth-child(odd),.step:nth-child(even){text-align:left;padding-left:50px;padding-right:0}
+  .step:nth-child(odd) .dot,.step:nth-child(even) .dot{left:12px;right:auto}
+  .step:nth-child(odd).step-reveal,.step:nth-child(even).step-reveal{transform:translateX(0) translateY(20px)}
+}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){
+  .journey-plane{display:none}
+  .journey .track-progress{height:100%!important}
+  .step .dot{background:var(--ouro);box-shadow:0 0 0 6px rgba(162,121,55,.18)}
+  .step.step-reveal{opacity:1;transform:none}
+}
 
 /* ---------- Manifesto ---------- */
 .manifesto{background:var(--roxo-profundo);text-align:center;position:relative;overflow:hidden}
@@ -879,27 +940,29 @@ footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(1
 </section>
 
 <!-- JORNADA -->
-<section class="section-pad nude" id="jornada">
+<section class="section-pad nude jornada-section" id="jornada">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow dark">Como funciona</span>
       <h2>Da ponte ao destino, cuidamos de toda a jornada.</h2>
     </div>
-    <div class="journey">
+    <div class="journey" id="journeyTrack">
       <div class="track"></div>
-      <div class="step reveal">
+      <div class="track-progress" id="trackProgress"></div>
+      <span class="journey-plane" id="journeyPlane">&#9992;</span>
+      <div class="step step-reveal" data-step="1">
         <div class="dot"></div>
         <div class="st-label">Etapa 01</div>
         <h3>Planejamento</h3>
         <p>Entendemos seu objetivo e desenhamos a rota certa — horário, conexões e custo pensados para o seu compromisso.</p>
       </div>
-      <div class="step reveal">
+      <div class="step step-reveal" data-step="2">
         <div class="dot"></div>
         <div class="st-label">Etapa 02</div>
         <h3>Embarque</h3>
         <p>Emissão segura e acompanhamento. Você recebe tudo organizado e viaja sem se preocupar com imprevistos.</p>
       </div>
-      <div class="step reveal">
+      <div class="step step-reveal" data-step="3">
         <div class="dot"></div>
         <div class="st-label">Etapa 03</div>
         <h3>Pós-venda</h3>
@@ -1463,6 +1526,93 @@ if (audWrapper && !prefersReducedMotion) {
   // Reduced motion: mostrar tudo imediatamente
   audLine.classList.add('visible');
   audCards.forEach(card => card.classList.add('in'));
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// ANIMAÇÃO SEÇÃO "JORNADA" - scroll-linked plane + progress + dots
+// ══════════════════════════════════════════════════════════════════════════════
+const journeyTrack = document.getElementById('journeyTrack');
+const trackProgress = document.getElementById('trackProgress');
+const journeyPlane = document.getElementById('journeyPlane');
+const journeySteps = document.querySelectorAll('.step.step-reveal');
+
+if (journeyTrack && !prefersReducedMotion) {
+  // Observer para reveal das steps
+  const stepObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          stepObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+  journeySteps.forEach(step => stepObserver.observe(step));
+
+  // Scroll handler para progresso e avião
+  const updateJourneyProgress = () => {
+    const rect = journeyTrack.getBoundingClientRect();
+    const trackHeight = journeyTrack.offsetHeight;
+    const viewportHeight = window.innerHeight;
+
+    // Calcular progresso: 0 quando topo entra, 1 quando fundo sai
+    const startOffset = viewportHeight * 0.7; // Começa quando 70% da viewport
+    const endOffset = viewportHeight * 0.3;   // Termina quando 30% da viewport
+
+    let progress = 0;
+    if (rect.top < startOffset && rect.bottom > endOffset) {
+      const totalScroll = (startOffset - endOffset) + trackHeight;
+      const scrolled = startOffset - rect.top;
+      progress = Math.max(0, Math.min(1, scrolled / totalScroll));
+    } else if (rect.bottom <= endOffset) {
+      progress = 1;
+    }
+
+    // Atualizar altura do progresso
+    const progressHeight = progress * trackHeight;
+    trackProgress.style.height = progressHeight + 'px';
+
+    // Atualizar posição do avião
+    journeyPlane.style.top = progressHeight + 'px';
+
+    // Acender dots baseado na posição do avião
+    journeySteps.forEach(step => {
+      const dot = step.querySelector('.dot');
+      const dotRect = dot.getBoundingClientRect();
+      const dotTop = dotRect.top - rect.top + dot.offsetHeight / 2;
+
+      if (progressHeight >= dotTop - 10) {
+        dot.classList.add('lit');
+      } else {
+        dot.classList.remove('lit');
+      }
+    });
+  };
+
+  // Throttle scroll para performance
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        updateJourneyProgress();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Inicial
+  updateJourneyProgress();
+
+} else if (journeyTrack) {
+  // Reduced motion: mostrar tudo imediatamente
+  trackProgress.style.height = '100%';
+  journeySteps.forEach(step => {
+    step.classList.add('in');
+    step.querySelector('.dot').classList.add('lit');
+  });
 }
 </script>
 </body>
