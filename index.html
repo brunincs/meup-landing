@@ -727,8 +727,9 @@ section{position:relative}
 }
 
 /* ---------- CTA final ---------- */
+.cta-section{background:var(--branco-gelo);padding:96px 0}
 .finalcta{background:linear-gradient(150deg,#3a1548,#25102f);border-radius:22px;padding:72px 32px;
-  text-align:center;border:1px solid rgba(162,121,55,.28);box-shadow:0 50px 90px -50px rgba(0,0,0,.7)}
+  text-align:center;border:1px solid rgba(162,121,55,.28);box-shadow:0 20px 50px rgba(50,17,63,.25)}
 .finalcta .eyebrow{margin-bottom:16px;font-size:13px}
 .finalcta h2{font-size:clamp(32px,4.5vw,52px);line-height:1.15;max-width:760px;margin:0 auto;text-wrap:balance;color:var(--branco-gelo)}
 .finalcta .btn{margin-top:40px;box-shadow:0 8px 20px -8px rgba(0,0,0,.4),0 0 32px -8px rgba(162,121,55,.5)}
@@ -736,7 +737,7 @@ section{position:relative}
 .wpp-icon{display:inline-flex;transition:transform .2s var(--ease)}
 .wpp-icon svg{width:1.1em;height:1.1em}
 .btn:hover .wpp-icon{transform:translateX(4px)}
-@media(max-width:599px){.finalcta{padding:72px 24px}}
+@media(max-width:599px){.cta-section{padding:64px 0}.finalcta{padding:72px 24px}}
 
 /* ---------- Footer ---------- */
 footer{background:#240c2e;padding:64px 0 32px;border-top:1px solid rgba(162,121,55,.4)}
@@ -756,6 +757,7 @@ footer{background:#240c2e;padding:64px 0 32px;border-top:1px solid rgba(162,121,
 .foot-security .seal{display:flex;align-items:center;gap:10px;color:rgba(237,240,241,.85);font-size:.9rem}
 .foot-security .seal svg{width:20px;height:20px;fill:var(--ouro);flex-shrink:0}
 .foot-security .legal{font-size:.78rem;color:rgba(237,240,241,.5);line-height:1.5}
+.nowrap{white-space:nowrap}
 .foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-top:24px;font-family:var(--font-ui);font-size:.8rem;color:rgba(237,240,241,.5)}
 .foot-bottom .plane-icon svg{width:20px;height:20px;fill:var(--ouro)}
 @media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr;gap:40px;text-align:left}}
@@ -1166,7 +1168,7 @@ footer{background:#240c2e;padding:64px 0 32px;border-top:1px solid rgba(162,121,
 </section>
 
 <!-- CTA FINAL -->
-<section class="section-pad">
+<section class="cta-section">
   <div class="wrap">
     <div class="finalcta reveal">
       <span class="eyebrow">Seu próximo embarque</span>
@@ -1204,7 +1206,7 @@ footer{background:#240c2e;padding:64px 0 32px;border-top:1px solid rgba(162,121,
         <h4>Segurança</h4>
         <div class="foot-security">
           <div class="seal"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>Agência registrada no Cadastur</div>
-          <div class="legal">B&amp;G Viagens Ltda<br>CNPJ e Cadastur: 50.546.247/0001-86</div>
+          <div class="legal">B&amp;G Viagens Ltda<br>CNPJ e Cadastur: <span class="nowrap">50.546.247/0001-86</span></div>
         </div>
       </div>
     </div>
