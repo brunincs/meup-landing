@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Assessoria de Viagens Corporativas Premium | Me,up</title>
-<meta name="description" content="Viagens sem imprevistos. Soluções inteligentes e seguras para empresas e profissionais de alta performance. Suporte humano real em cada etapa.">
+<meta name="description" content="Viagens decididas com critério e suporte humano em cada etapa, para empresas e profissionais que não podem errar. Fale com a Me,up.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
   --font-ui:'Montserrat',sans-serif;
   --font-body:'Roboto',sans-serif;
   --container:1180px;
-  --space-section:clamp(72px,10vw,140px);
+  --space-section:clamp(48px,7vw,96px);
   --ease:cubic-bezier(.22,.61,.36,1);
 }
 
@@ -44,15 +44,16 @@ a{color:inherit;text-decoration:none}
 /* ---------- Tipografia ---------- */
 h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.08;letter-spacing:-.01em}
 .eyebrow{
-  font-family:var(--font-ui);font-weight:600;font-size:.78rem;letter-spacing:.22em;
-  text-transform:uppercase;color:var(--ouro-claro);display:inline-block;margin-bottom:16px;
+  font-family:var(--font-ui);font-weight:600;font-size:.85rem;letter-spacing:.22em;
+  text-transform:uppercase;color:#d4ab65;display:inline-block;margin-bottom:16px;
 }
 .eyebrow.dark{color:var(--ouro)}
-.lead{font-size:clamp(1rem,1.4vw,1.15rem);color:var(--cinza-rosado);max-width:52ch}
+.lead{font-size:clamp(1rem,1.4vw,1.15rem);color:#c5c0bf;max-width:52ch}
 .lead.on-light{color:#5c5250}
 
 /* ---------- Aviãozinho / linha dourada ---------- */
 .plane{display:inline-block;transform:translateY(2px)}
+.plane svg,.fly svg,.journey-plane svg,.aud-plane svg{width:1em;height:1em;fill:currentColor}
 
 /* ---------- Botões ---------- */
 .btn{
@@ -71,18 +72,32 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.08;letter
 .btn-ghost:hover{border-color:var(--ouro);color:var(--ouro-claro)}
 
 /* ---------- Header ---------- */
-header{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .4s,padding .4s,border-color .4s;
-  padding:22px 0;border-bottom:1px solid transparent}
-header.scrolled{background:rgba(30,10,38,.92);padding:14px 0;border-bottom:1px solid rgba(162,121,55,.22)}
+header{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .4s,border-color .4s,box-shadow .4s;
+  padding:18px 0;border-bottom:1px solid transparent}
+header.scrolled{background:rgba(30,10,38,.95);border-bottom:1px solid rgba(162,121,55,.22);box-shadow:0 4px 20px rgba(0,0,0,.3)}
 .nav{display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:var(--font-display);font-weight:700;font-size:1.55rem;letter-spacing:-.02em;color:var(--branco-gelo)}
+.logo{font-family:var(--font-display),"Times New Roman",serif;font-weight:700;font-size:1.55rem;letter-spacing:-.02em;color:var(--branco-gelo)}
 .logo span{color:var(--ouro)}
 .nav-links{display:flex;gap:36px;font-family:var(--font-ui);font-size:.9rem;font-weight:500}
 .nav-links a{color:var(--cinza-rosado);transition:color .2s}
 .nav-links a:hover{color:var(--branco-gelo)}
-.nav-cta{font-family:var(--font-ui);font-weight:600;font-size:.9rem;padding:11px 22px;border-radius:6px;background:var(--ouro);color:#231018;transition:transform .2s,background .2s}
+.nav-links a:focus-visible{outline:2px solid var(--ouro);outline-offset:4px;color:var(--branco-gelo)}
+.nav-cta{font-family:var(--font-ui);font-weight:600;font-size:.9rem;padding:11px 22px;border-radius:6px;background:var(--ouro);color:#231018;transition:transform .2s,background .2s;display:inline-flex;align-items:center;gap:8px}
 .nav-cta:hover{transform:translateY(-2px);background:var(--ouro-claro)}
-.menu-btn{display:none;background:none;border:0;color:var(--branco-gelo);font-size:1.6rem;cursor:pointer}
+.nav-wpp{width:1.1em;height:1.1em}
+.menu-btn{display:none;background:none;border:0;color:var(--branco-gelo);font-size:1.6rem;cursor:pointer;z-index:101}
+
+/* Mobile menu overlay */
+.nav-links.mobile-open{
+  display:flex!important;flex-direction:column;position:fixed;
+  top:0;left:0;right:0;bottom:0;background:var(--roxo-profundo);
+  justify-content:center;align-items:center;gap:32px;z-index:100;
+  animation:fadeIn .3s var(--ease);
+}
+.nav-links.mobile-open a{font-size:1.4rem;color:var(--branco-gelo)}
+.nav-links.mobile-open a:hover{color:var(--ouro)}
+.menu-btn.open{position:fixed;top:20px;right:20px}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
 /* ---------- Hero ---------- */
 .hero{position:relative;padding:140px 0 60px;overflow:hidden}
@@ -122,6 +137,7 @@ header.scrolled{background:rgba(30,10,38,.92);padding:14px 0;border-bottom:1px s
   font-family:var(--font-ui);font-size:.68rem;letter-spacing:.1em;
   text-transform:uppercase;color:var(--cinza-rosado);
 }
+.rc-field:has(:required) label::after{content:" *";color:var(--ouro)}
 .rc-field select,
 .rc-field input[type="date"],
 .rc-field input[type="number"],
@@ -152,6 +168,39 @@ header.scrolled{background:rgba(30,10,38,.92);padding:14px 0;border-bottom:1px s
   outline:none;border-color:var(--ouro-claro);background-color:rgba(50,17,63,.8);
 }
 .rc-field select option{background:var(--roxo-profundo);color:var(--branco-gelo)}
+.rc-field input[type="tel"]{
+  font-family:var(--font-ui);font-size:.85rem;font-weight:500;
+  color:var(--branco-gelo);background:rgba(50,17,63,.6);
+  border:1px solid rgba(162,121,55,.35);border-radius:6px;
+  padding:11px 12px;transition:border-color .2s,background-color .2s;
+}
+.rc-field input[type="tel"]:hover{border-color:var(--ouro)}
+.rc-field input[type="tel"]:focus{outline:none;border-color:var(--ouro-claro);background-color:rgba(50,17,63,.8)}
+.rc-field textarea{
+  font-family:var(--font-ui);font-size:.85rem;font-weight:500;
+  color:var(--branco-gelo);background:rgba(50,17,63,.6);
+  border:1px solid rgba(162,121,55,.35);border-radius:6px;
+  padding:11px 12px;resize:vertical;min-height:60px;
+  transition:border-color .2s,background-color .2s;
+}
+.rc-field textarea:hover{border-color:var(--ouro)}
+.rc-field textarea:focus{outline:none;border-color:var(--ouro-claro);background-color:rgba(50,17,63,.8)}
+.rc-field textarea::placeholder,.rc-field input::placeholder{color:rgba(163,150,149,.6)}
+.rc-field select:invalid,.rc-field select option[value=""]{color:rgba(163,150,149,.6);font-weight:400}
+.rc-field select:valid{color:var(--branco-gelo)}
+.rc-field input[type="date"]:invalid{color:rgba(163,150,149,.6);font-weight:400}
+.rc-field .opcional{font-size:.6rem;text-transform:none;letter-spacing:0;color:rgba(163,150,149,.7)}
+.rc-subtitle{
+  font-family:var(--font-ui);font-size:.82rem;color:var(--cinza-rosado);
+  margin-bottom:18px;line-height:1.4;
+}
+.rc-error{
+  font-family:var(--font-ui);font-size:.75rem;color:#e57373;
+  margin-top:10px;min-height:1em;
+}
+.rc-field.invalid input,.rc-field.invalid select,.rc-field.invalid textarea{
+  border-color:#e57373;
+}
 
 /* Autocomplete */
 .autocomplete-wrapper{position:relative}
@@ -226,8 +275,8 @@ header.scrolled{background:rgba(30,10,38,.92);padding:14px 0;border-bottom:1px s
 .pax-info small{display:block;font-size:.7rem;color:var(--cinza-rosado);margin-top:2px}
 .pax-controls{display:flex;align-items:center;gap:12px}
 .pax-btn{
-  width:30px;height:30px;border-radius:50%;border:1px solid rgba(162,121,55,.5);
-  background:transparent;color:var(--ouro);font-size:1.1rem;cursor:pointer;
+  width:44px;height:44px;border-radius:50%;border:1px solid rgba(162,121,55,.5);
+  background:transparent;color:var(--ouro);font-size:1.2rem;cursor:pointer;
   display:flex;align-items:center;justify-content:center;
   transition:background .15s,border-color .15s;
 }
@@ -277,7 +326,7 @@ header.scrolled{background:rgba(30,10,38,.92);padding:14px 0;border-bottom:1px s
 /* ---------- Seções genéricas ---------- */
 section{position:relative}
 .section-pad{padding:var(--space-section) 0}
-.section-head{max-width:60ch;margin-bottom:60px}
+.section-head{max-width:60ch;margin-bottom:40px}
 .section-head h2{font-size:clamp(2rem,4.2vw,3.2rem);margin-top:6px}
 .light{background:var(--branco-gelo);color:var(--grafite)}
 .light h2{color:var(--roxo-profundo)}
@@ -298,6 +347,8 @@ section{position:relative}
   transition:none;
 }
 .aud-line.visible{opacity:.4;transform:scaleX(1);transition:transform 1.2s var(--ease),opacity .6s}
+.aud-line{animation:jsFailsafe 0s 2s forwards}
+.aud-line.visible{animation:none}
 
 /* Aviãozinho na linha */
 .aud-plane{
@@ -496,9 +547,9 @@ section{position:relative}
   background:rgba(162,121,55,.2);transform:translateX(-50%);
 }
 .journey .track-progress{
-  position:absolute;left:50%;top:0;width:2px;height:0;
-  background:var(--ouro);transform:translateX(-50%);
-  transition:height .1s linear;
+  position:absolute;left:50%;top:0;width:2px;height:100%;
+  background:var(--ouro);transform:translateX(-50%) scaleY(0);
+  transform-origin:top;will-change:transform;
 }
 
 /* Aviãozinho que desce com scroll */
@@ -524,8 +575,8 @@ section{position:relative}
 }
 .step .dot.lit{
   background:var(--ouro);
-  box-shadow:0 0 0 6px rgba(162,121,55,.25),0 0 16px rgba(162,121,55,.4);
-  transform:scale(1.1);
+  box-shadow:0 0 0 6px rgba(162,121,55,.22);
+  transform:scale(1.05);
 }
 .step:nth-child(odd) .dot{left:-48px}
 .step:nth-child(even) .dot{right:-48px}
@@ -555,35 +606,113 @@ section{position:relative}
 /* Reduced motion */
 @media(prefers-reduced-motion:reduce){
   .journey-plane{display:none}
-  .journey .track-progress{height:100%!important}
+  .journey .track-progress{transform:translateX(-50%) scaleY(1)!important}
   .step .dot{background:var(--ouro);box-shadow:0 0 0 6px rgba(162,121,55,.18)}
   .step.step-reveal{opacity:1;transform:none}
 }
 
+/* Fallback: mostrar conteúdo se JS não carregar (após 2s) */
+@keyframes jsFailsafe{to{opacity:1;transform:none}}
+.step.step-reveal{animation:jsFailsafe 0s 2s forwards}
+.step.step-reveal.in{animation:none}
+.reveal{animation:jsFailsafe 0s 2s forwards}
+.reveal.in{animation:none}
+
 /* ---------- Manifesto ---------- */
 .manifesto{background:var(--roxo-profundo);text-align:center;position:relative;overflow:hidden}
 .manifesto::before{content:"\201C";position:absolute;top:20px;left:50%;transform:translateX(-50%);
-  font-family:var(--font-display);font-size:14rem;color:rgba(162,121,55,.14);line-height:1}
+  font-family:var(--font-display);font-size:8rem;color:rgba(162,121,55,.1);line-height:1}
 .manifesto .wrap{position:relative;z-index:1;max-width:900px}
 .manifesto blockquote{font-family:var(--font-display);font-weight:500;font-style:italic;
   font-size:clamp(1.4rem,2.9vw,2.2rem);line-height:1.42;color:var(--branco-gelo)}
 .manifesto blockquote b{color:var(--ouro-claro);font-style:normal}
 .manifesto .sig{margin-top:34px;font-family:var(--font-ui);font-size:.85rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cinza-rosado)}
 
+/* ---------- Seção Aline ---------- */
+.aline-section{background:var(--branco-gelo);color:var(--roxo-profundo)}
+.aline-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.aline-photo{width:100%;max-width:480px;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:12px;align-self:center}
+.aline-content{display:flex;flex-direction:column;gap:18px}
+.aline-content .eyebrow{color:var(--ouro);margin-bottom:4px}
+.aline-content h2{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:600;line-height:1.2;margin:0}
+.aline-content .gold-line{width:60px;height:2px;background:var(--ouro);margin:8px 0 12px}
+.aline-content p{font-family:var(--font-body);font-size:1rem;line-height:1.7;color:var(--grafite);margin:0}
+.aline-content .highlight{font-family:var(--font-display);font-style:italic;font-size:24px;color:var(--roxo-brilhante);margin-top:8px;margin-bottom:32px}
+.aline-content .btn{margin-top:12px;align-self:flex-start}
+@media(max-width:800px){
+  .aline-grid{grid-template-columns:1fr;text-align:center}
+  .aline-photo{max-width:360px;margin:0 auto}
+  .aline-content{align-items:center}
+  .aline-content .btn{align-self:center}
+}
+
+/* ---------- Seção Feiras ---------- */
+.feiras-section{background:var(--roxo-profundo);color:var(--branco-gelo);text-align:center;position:relative;overflow:hidden}
+.feiras-section .wrap{position:relative;z-index:2}
+.feiras-section .section-head{margin:0 auto 48px}
+.feiras-section .eyebrow{color:var(--ouro);text-align:center;margin-left:auto;margin-right:auto}
+.feiras-section h2{color:var(--branco-gelo);margin:0 auto 12px;max-width:820px;text-wrap:balance;text-align:center}
+.feiras-section .gold-line{width:60px;height:2px;background:var(--ouro);margin:0 auto 20px}
+.feiras-section .lead{font-family:var(--font-body);font-size:17px;line-height:1.6;color:rgba(237,240,241,.85);margin:0 auto;max-width:620px;text-align:center}
+.feiras-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:40px;position:relative;z-index:2}
+.feira-card{
+  background:rgba(255,255,255,.05);border:1px solid rgba(162,121,55,.3);border-radius:12px;
+  padding:32px 24px;text-align:center;
+  transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+}
+.feira-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--ouro);
+  box-shadow:0 12px 32px -8px rgba(162,121,55,.35);
+}
+.feira-card .icon{color:var(--ouro);font-size:1.8rem;margin-bottom:16px;transition:transform .3s ease}
+.feira-card .icon svg{width:32px;height:32px;fill:var(--ouro)}
+.feira-card:hover .icon{transform:translateX(6px)}
+.feira-card h3{font-family:var(--font-display);font-size:1.25rem;font-weight:600;color:var(--branco-gelo);margin:0 0 12px}
+.feira-card p{font-family:var(--font-body);font-size:.95rem;line-height:1.6;color:rgba(237,240,241,.75);margin:0}
+.feiras-section .btn{margin:0 auto;display:block;width:fit-content}
+
+/* Rota animada no fundo */
+.feiras-route{position:absolute;top:45%;left:0;width:100%;height:55%;pointer-events:none;z-index:1}
+.feiras-route svg{width:100%;height:100%}
+.feiras-route .route-path{fill:none;stroke:var(--ouro);stroke-width:2;stroke-dasharray:8 6;opacity:.25}
+.feiras-plane{fill:var(--ouro);opacity:.6}
+@keyframes flyRoute{
+  0%{offset-distance:0%}
+  100%{offset-distance:100%}
+}
+.feiras-plane{offset-path:path('M-50,80 Q350,160 700,60 T1400,120 T1950,80');animation:flyRoute 12s linear infinite}
+.feiras-section .btn{display:inline-flex;align-items:center;gap:10px}
+
+/* Cards fade-in stagger */
+.feira-card.reveal-card{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.feira-card.reveal-card.in{opacity:1;transform:translateY(0)}
+
+@media(max-width:800px){
+  .feiras-grid{grid-template-columns:1fr;max-width:400px;margin:0 auto 40px}
+  .feiras-plane{offset-path:path('M-20,40 Q200,120 400,50 T800,100')}
+}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){
+  .feiras-plane{animation:none;opacity:0}
+  .feira-card.reveal-card{opacity:1;transform:none}
+}
+
 /* ---------- Depoimentos ---------- */
 .testimonials{background:var(--branco-gelo);color:var(--grafite)}
 .testimonials h2{color:var(--roxo-profundo)}
-.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
 .test-card{
   background:var(--branco);border:1px solid rgba(50,17,63,.08);border-radius:14px;
   padding:32px 28px;position:relative;
-  transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+  transition:transform .2s var(--ease),box-shadow .2s var(--ease);
 }
-.test-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px -20px rgba(0,0,0,.12)}
+.test-card:hover{transform:translateY(-6px);box-shadow:0 24px 48px -16px rgba(0,0,0,.18)}
 .test-card::before{
   content:"\201C";position:absolute;top:18px;left:24px;
   font-family:var(--font-display);font-size:3.5rem;line-height:1;
-  color:var(--ouro);opacity:.5;
+  color:var(--ouro);
 }
 .test-card blockquote{
   font-family:var(--font-body);font-size:.98rem;line-height:1.65;
@@ -608,21 +737,26 @@ section{position:relative}
 }
 
 /* ---------- CTA final ---------- */
-.finalcta{background:linear-gradient(150deg,#3a1548,#25102f);border-radius:22px;padding:clamp(48px,7vw,84px);
+.finalcta{background:linear-gradient(150deg,#3a1548,#25102f);border-radius:22px;padding:clamp(28px,4vw,44px);
   text-align:center;border:1px solid rgba(162,121,55,.28);box-shadow:0 50px 90px -50px rgba(0,0,0,.7)}
 .finalcta h2{font-size:clamp(2rem,4.4vw,3.2rem);color:var(--branco-gelo)}
-.finalcta p{color:var(--cinza-rosado);margin:20px auto 36px;max-width:52ch}
+.finalcta p{color:var(--cinza-rosado);margin:20px auto 28px;max-width:52ch}
+.wpp-icon{display:inline-flex;transition:transform .2s var(--ease)}
+.wpp-icon svg{width:1.1em;height:1.1em}
+.btn:hover .wpp-icon{transform:translateX(4px)}
+.finalcta .btn{box-shadow:0 8px 20px -8px rgba(0,0,0,.4),0 0 32px -8px rgba(162,121,55,.5)}
+.finalcta .btn:hover{background:#8a6428}
 
 /* ---------- Footer ---------- */
 footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(162,121,55,.2)}
 .foot-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-bottom:40px;border-bottom:1px solid rgba(237,240,241,.1)}
 .foot-brand .logo{margin-bottom:14px}
-.foot-brand p{color:var(--cinza-rosado);max-width:34ch;font-size:.92rem}
+.foot-brand p{color:#b8b3b2;max-width:34ch;font-size:.92rem}
 .foot-cols{display:flex;gap:64px;flex-wrap:wrap}
 .foot-col h4{font-family:var(--font-ui);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ouro-claro);margin-bottom:16px}
 .foot-col a{display:block;color:var(--cinza-rosado);font-size:.92rem;margin-bottom:11px;transition:color .2s}
 .foot-col a:hover{color:var(--branco-gelo)}
-.foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:26px;font-family:var(--font-ui);font-size:.8rem;color:var(--cinza-rosado)}
+.foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:26px;font-family:var(--font-ui);font-size:.8rem;color:#b8b3b2}
 
 /* ---------- Reveal ---------- */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
@@ -638,7 +772,16 @@ footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(1
   .aud-grid{grid-template-columns:1fr;max-width:460px}
   .feat{grid-template-columns:1fr;gap:26px;text-align:left}
   .feat.flip .feat-text{order:0}
-  .feat-visual{height:170px}
+  .feat-visual{height:auto;min-height:160px;padding:20px 16px 24px}
+  .visual-curadoria,.visual-whatsapp{padding:20px 16px 24px}
+  .visual-logistica,.visual-cadastur{padding:20px 16px 24px}
+  .route-option{padding:10px 12px}
+  .route-option .codes{font-size:.75rem;min-width:65px}
+  .route-option .detail{font-size:.7rem}
+  .wpp-bubble{padding:10px 14px;font-size:.85rem}
+  .wpp-bubble.meup{font-size:.82rem}
+  .itin-card{padding:14px 16px}
+  .cadastur-badge{padding:20px 28px}
   .journey .track{left:9px}
   .step{width:100%;text-align:left!important;padding:22px 0 22px 42px!important}
   .step .dot{left:1px!important;right:auto!important}
@@ -667,8 +810,9 @@ footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(1
       <a href="#diferenciais">Diferenciais</a>
       <a href="#jornada">Como funciona</a>
       <a href="#manifesto">Manifesto</a>
+      <a href="#depoimentos">Depoimentos</a>
     </nav>
-    <a href="https://wa.me/5516988126568" class="nav-cta" target="_blank" rel="noopener">Falar no WhatsApp</a>
+    <a href="https://wa.me/5516988126568?text=Ol%C3%A1!%20Vim%20pelo%20site%20%E2%80%93%20cabe%C3%A7alho." class="nav-cta" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
     <button class="menu-btn" aria-label="Menu">&#9776;</button>
   </div>
 </header>
@@ -678,125 +822,71 @@ footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(1
   <div class="wrap">
     <div class="hero-copy reveal">
       <span class="eyebrow">Assessoria de viagens premium</span>
-      <h1>Viagens sem imprevistos, para quem <em>não pode errar</em>.</h1>
-      <p class="lead">Logística inteligente de passagens aéreas com suporte humano real. Eficiência, segurança e custo-benefício para empresas e profissionais de alta performance.</p>
+      <h1>Imprevisto acontece. A diferença é ter <em>para quem ligar</em>.</h1>
+      <p class="lead">Logística inteligente de passagens aéreas com suporte humano real. A rota certa para o seu compromisso.</p>
       <div class="hero-actions">
-        <a href="https://wa.me/5516988126568" class="btn" target="_blank" rel="noopener">Solicite sua cotação <span class="plane">&#9992;</span></a>
-        <a href="#diferenciais" class="btn-ghost">Diferenciais</a>
+        <a href="#diferenciais" class="btn">Diferenciais</a>
       </div>
     </div>
 
     <aside class="route-card reveal" id="routeCard">
-      <div class="rc-label">Solicite sua cotação</div>
+      <div class="rc-label">Conte qual é o seu compromisso.</div>
+      <div class="rc-subtitle">A gente pensa na rota. Você cuida do que importa.</div>
 
-      <!-- Origem (Brasil) e Destino (Mundo) - AUTOCOMPLETE -->
-      <div class="rc-row">
-        <div class="rc-field">
-          <label for="origInput">Origem (Brasil)</label>
-          <div class="autocomplete-wrapper">
-            <input type="text" id="origInput" placeholder="Digite cidade ou código..." autocomplete="off" aria-autocomplete="list" aria-controls="origList" aria-expanded="false">
-            <div class="autocomplete-list" id="origList" role="listbox"></div>
-          </div>
-        </div>
-        <div class="rc-field">
-          <label for="destInput">Destino</label>
-          <div class="autocomplete-wrapper">
-            <input type="text" id="destInput" placeholder="Digite cidade ou código..." autocomplete="off" aria-autocomplete="list" aria-controls="destList" aria-expanded="false">
-            <div class="autocomplete-list" id="destList" role="listbox"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Datas de ida e volta -->
-      <div class="rc-row">
-        <div class="rc-field">
-          <label for="dateIda">Data de ida</label>
-          <input type="date" id="dateIda">
-        </div>
-        <div class="rc-field">
-          <label for="dateVolta">Data de volta</label>
-          <input type="date" id="dateVolta">
-        </div>
-      </div>
-
-      <!-- Checkbox flexibilidade -->
-      <label class="rc-check">
-        <input type="checkbox" id="flexCheck">
-        Tenho flexibilidade de datas
-      </label>
-
-      <!-- Campos de flexibilidade (aparecem com checkbox) -->
-      <div class="flex-fields" id="flexFields">
-        <div class="rc-field">
-          <label for="flexIda">Flexibilidade na ida (dias)</label>
-          <input type="number" id="flexIda" min="0" max="30" value="3">
-        </div>
-        <div class="rc-field">
-          <label for="flexVolta">Flexibilidade na volta (dias)</label>
-          <input type="number" id="flexVolta" min="0" max="30" value="3">
-        </div>
-      </div>
-
-      <!-- Passageiros -->
+      <!-- Nome -->
       <div class="rc-row single">
         <div class="rc-field">
-          <label>Passageiros</label>
-          <div class="pax-wrapper">
-            <button type="button" class="pax-trigger" id="paxTrigger" aria-haspopup="true" aria-expanded="false">
-              <span id="paxSummary">1 adulto</span>
-            </button>
-            <div class="pax-popover" id="paxPopover" role="dialog" aria-label="Selecionar passageiros">
-              <div class="pax-line">
-                <div class="pax-info">Adultos<small>12 anos ou mais</small></div>
-                <div class="pax-controls">
-                  <button type="button" class="pax-btn" data-pax="adults" data-action="dec" aria-label="Diminuir adultos">−</button>
-                  <span class="pax-count" id="adultsCount">1</span>
-                  <button type="button" class="pax-btn" data-pax="adults" data-action="inc" aria-label="Aumentar adultos">+</button>
-                </div>
-              </div>
-              <div class="pax-line">
-                <div class="pax-info">Crianças<small>2 a 11 anos</small></div>
-                <div class="pax-controls">
-                  <button type="button" class="pax-btn" data-pax="children" data-action="dec" aria-label="Diminuir crianças">−</button>
-                  <span class="pax-count" id="childrenCount">0</span>
-                  <button type="button" class="pax-btn" data-pax="children" data-action="inc" aria-label="Aumentar crianças">+</button>
-                </div>
-              </div>
-              <div class="pax-line">
-                <div class="pax-info">Bebês<small>0 a 23 meses, no colo</small></div>
-                <div class="pax-controls">
-                  <button type="button" class="pax-btn" data-pax="infants" data-action="dec" aria-label="Diminuir bebês">−</button>
-                  <span class="pax-count" id="infantsCount">0</span>
-                  <button type="button" class="pax-btn" data-pax="infants" data-action="inc" aria-label="Aumentar bebês">+</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <label for="nomeInput">Nome</label>
+          <input type="text" id="nomeInput" required placeholder="Seu nome">
         </div>
       </div>
 
-      <!-- Momento da compra -->
+      <!-- Motivo da viagem -->
       <div class="rc-row single">
         <div class="rc-field">
-          <label for="momentoSelect">Momento da compra</label>
-          <select id="momentoSelect">
-            <option value="">Selecione</option>
-            <option value="Estou cotando / pesquisando">Estou cotando / pesquisando</option>
-            <option value="Pretendo comprar em breve">Pretendo comprar em breve</option>
-            <option value="Preciso comprar com urgência">Preciso comprar com urgência</option>
+          <label for="motivoSelect">Motivo da viagem</label>
+          <select id="motivoSelect" required>
+            <option value="" disabled selected>Selecione</option>
+            <option value="Reunião ou negócios">Reunião ou negócios</option>
+            <option value="Feira ou evento internacional">Feira ou evento internacional</option>
+            <option value="Congresso">Congresso</option>
+            <option value="Tratamento médico">Tratamento médico</option>
+            <option value="Urgência">Urgência</option>
+            <option value="Outro">Outro</option>
           </select>
         </div>
       </div>
 
-      <!-- Linha visual da rota com avião em loop -->
-      <div class="route" id="routeVisual">
-        <span class="city" id="origCode">GRU</span>
-        <span class="path"><i class="fly" id="flyPlane">&#9992;</i></span>
-        <span class="city" id="destCode">LIS</span>
+      <!-- Datas do compromisso -->
+      <div class="rc-row">
+        <div class="rc-field">
+          <label for="dataInicio">Início do compromisso</label>
+          <input type="date" id="dataInicio" required>
+        </div>
+        <div class="rc-field">
+          <label for="dataFim">Fim do compromisso <span class="opcional">(opcional)</span></label>
+          <input type="date" id="dataFim">
+        </div>
       </div>
 
-      <a href="#" class="btn btn-quote" id="quoteBtn" target="_blank" rel="noopener">Solicitar cotação desta rota <span class="plane">&#9992;</span></a>
-      <div class="rc-note">Pensamos no seu compromisso, não apenas no destino.</div>
+      <!-- Cidade do compromisso -->
+      <div class="rc-row single">
+        <div class="rc-field">
+          <label for="cidadeInput">Cidade do compromisso</label>
+          <input type="text" id="cidadeInput" required placeholder="Ex.: Guangzhou, Lisboa, Brasília">
+        </div>
+      </div>
+
+      <!-- Observações -->
+      <div class="rc-row single">
+        <div class="rc-field">
+          <label for="obsInput">Observações <span class="opcional">(opcional)</span></label>
+          <textarea id="obsInput" rows="2" placeholder="Algo que não pode dar errado?"></textarea>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-quote" id="quoteBtn">Falar com a Me,up <span class="wpp-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span></button>
+      <div class="rc-error" id="formError"></div>
     </aside>
   </div>
 </section>
@@ -807,7 +897,7 @@ footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(1
     <div class="item"><span>&#10003;</span> Registro Cadastur</div>
     <div class="item"><span>&#10003;</span> Suporte humano real</div>
     <div class="item"><span>&#10003;</span> Curadoria inteligente</div>
-    <div class="item"><span>&#10003;</span> Custo-benefício real</div>
+    <div class="item"><span>&#10003;</span> A rota certa</div>
   </div>
 </div>
 
@@ -821,7 +911,7 @@ footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(1
     </div>
     <div class="aud-wrapper" id="audWrapper">
       <div class="aud-line" id="audLine"></div>
-      <span class="aud-plane" id="audPlane">&#9992;</span>
+      <span class="aud-plane" id="audPlane"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></span>
       <div class="aud-grid">
         <article class="aud reveal-card">
           <div class="num">01</div>
@@ -924,7 +1014,7 @@ footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(1
       <div class="feat-text">
         <div class="feat-index">04</div>
         <h3>Segurança garantida</h3>
-        <p>Processos profissionais, registro Cadastur e histórico de confiança. Viajar com a Me,up é viajar sem risco.</p>
+        <p>Processos profissionais, registro Cadastur e histórico de confiança. Viajar com a Me,up é ter alguém decidindo com você.</p>
       </div>
       <div class="feat-visual visual-cadastur">
         <div class="cadastur-badge">
@@ -944,12 +1034,12 @@ footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(1
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow dark">Como funciona</span>
-      <h2>Da ponte ao destino, cuidamos de toda a jornada.</h2>
+      <h2>Da origem ao destino, cuidamos de toda a jornada.</h2>
     </div>
     <div class="journey" id="journeyTrack">
       <div class="track"></div>
       <div class="track-progress" id="trackProgress"></div>
-      <span class="journey-plane" id="journeyPlane">&#9992;</span>
+      <span class="journey-plane" id="journeyPlane"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></span>
       <div class="step step-reveal" data-step="1">
         <div class="dot"></div>
         <div class="st-label">Etapa 01</div>
@@ -980,6 +1070,70 @@ footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(1
   </div>
 </section>
 
+<!-- ALINE -->
+<section class="section-pad aline-section" id="aline">
+  <div class="wrap">
+    <div class="aline-grid reveal">
+      <img
+        src="assets/img/aline.webp"
+        alt="Aline, fundadora da Me,up Viagens"
+        class="aline-photo"
+        width="1200"
+        height="1200"
+        loading="lazy"
+      >
+      <div class="aline-content">
+        <span class="eyebrow">Quem decide com você</span>
+        <h2>Aline, fundadora da Me,up</h2>
+        <div class="gold-line"></div>
+        <p>Criei a Me,up para quem não pode errar uma viagem: empresários, médicos, executivos e as assistentes que cuidam da agenda deles.</p>
+        <p>Cada viagem passa pelo meu critério. Rota, horário e conexão pensados para o seu compromisso, não só para o destino.</p>
+        <p class="highlight">A Me,up decide com você.</p>
+        <a href="https://wa.me/5516988126568?text=Ol%C3%A1!%20Vim%20pelo%20site%20%E2%80%93%20se%C3%A7%C3%A3o%20da%20Aline." class="btn" target="_blank" rel="noopener noreferrer">Falar com a Me,up <span class="wpp-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEIRAS E VIAGENS DE NEGÓCIOS -->
+<section class="section-pad feiras-section" id="feiras">
+  <!-- Rota animada no fundo -->
+  <div class="feiras-route" aria-hidden="true">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none">
+      <path class="route-path" d="M-50,80 Q350,160 700,60 T1400,120 T1950,80"/>
+      <g class="feiras-plane">
+        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" transform="scale(0.8)"/>
+      </g>
+    </svg>
+  </div>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Feiras e viagens de negócios</span>
+      <h2>Você cuida do negócio. A rota fica com a gente.</h2>
+      <div class="gold-line"></div>
+      <p class="lead">Voo, conexão e hotel pensados para você chegar descansado ao seu compromisso.</p>
+    </div>
+    <div class="feiras-grid" id="feirasGrid">
+      <div class="feira-card reveal-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></div>
+        <h3>China e Canton Fair</h3>
+        <p>Conexões pensadas para uma viagem longa, com tempo de sobra entre um voo e outro.</p>
+      </div>
+      <div class="feira-card reveal-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></div>
+        <h3>Europa</h3>
+        <p>Feiras, reuniões e congressos com a logística decidida antes do embarque.</p>
+      </div>
+      <div class="feira-card reveal-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></div>
+        <h3>Oriente Médio</h3>
+        <p>Dubai e região com rota, horário e hotel alinhados à sua agenda.</p>
+      </div>
+    </div>
+    <a href="https://wa.me/5516988126568?text=Ol%C3%A1!%20Vim%20pelo%20site%20%E2%80%93%20feiras%20e%20viagens%20de%20neg%C3%B3cios." class="btn reveal" target="_blank" rel="noopener noreferrer">Planejar minha viagem de negócios <span class="wpp-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span></a>
+  </div>
+</section>
+
 <!-- DEPOIMENTOS -->
 <section class="section-pad testimonials" id="depoimentos">
   <div class="wrap">
@@ -1004,10 +1158,6 @@ footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(1
         <blockquote>A nota não pode ser diferente de 10. Atendeu perfeitamente o que eu procurava — viajar com uma família de 4 pessoas não é fácil, e a indicação foi fantástica. No planejamento da próxima, vamos contar com vocês.</blockquote>
         <cite><strong>Cliente Me,up</strong> · viagem em família</cite>
       </article>
-      <article class="test-card reveal">
-        <blockquote>Uma startup que encontra pra mim as melhores oportunidades para viajar, economizando muito nas passagens. O atendimento é top: sempre buscam a melhor estratégia pra sua viagem.</blockquote>
-        <cite><strong>Cliente Me,up</strong></cite>
-      </article>
     </div>
   </div>
 </section>
@@ -1017,9 +1167,8 @@ footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(1
   <div class="wrap">
     <div class="finalcta reveal">
       <span class="eyebrow">Fale com a Me,up</span>
-      <h2>Garanta sua passagem sem risco.</h2>
-      <p>Suporte humano direto no WhatsApp para planejar sua próxima viagem com eficiência, segurança e custo-benefício real.</p>
-      <a href="https://wa.me/5516988126568" class="btn" target="_blank" rel="noopener">Solicite sua cotação agora <span class="plane">&#9992;</span></a>
+      <h2>Sua próxima viagem, decidida com quem entende.</h2>
+      <a href="https://wa.me/5516988126568?text=Ol%C3%A1!%20Vim%20pelo%20site%20%E2%80%93%20CTA%20final." class="btn" target="_blank" rel="noopener noreferrer">Fale com a Me,up <span class="wpp-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -1042,7 +1191,7 @@ footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(1
         </div>
         <div class="foot-col">
           <h4>Contato</h4>
-          <a href="https://wa.me/5516988126568" target="_blank" rel="noopener">WhatsApp (16) 98812-6568</a>
+          <a href="https://wa.me/5516988126568?text=Ol%C3%A1!%20Vim%20pelo%20site%20%E2%80%93%20rodap%C3%A9." target="_blank" rel="noopener">WhatsApp (16) 98812-6568</a>
           <a href="https://instagram.com/meup.viagens" target="_blank" rel="noopener">@meup.viagens</a>
         </div>
       </div>
@@ -1055,424 +1204,106 @@ footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(1
 </footer>
 
 <!-- Base de aeroportos (carregada de forma assíncrona) -->
-<script src="airports.js"></script>
-
 <script>
 // ══════════════════════════════════════════════════════════════════════════════
-// ELEMENTOS DO DOM
+// ELEMENTOS DO DOM - FORMULÁRIO DE COMPROMISSO
 // ══════════════════════════════════════════════════════════════════════════════
-const origInput = document.getElementById('origInput');
-const origList = document.getElementById('origList');
-const destInput = document.getElementById('destInput');
-const destList = document.getElementById('destList');
-const origCodeEl = document.getElementById('origCode');
-const destCodeEl = document.getElementById('destCode');
-const flyPlane = document.getElementById('flyPlane');
+const nomeInput = document.getElementById('nomeInput');
+const motivoSelect = document.getElementById('motivoSelect');
+const dataInicio = document.getElementById('dataInicio');
+const dataFim = document.getElementById('dataFim');
+const cidadeInput = document.getElementById('cidadeInput');
+const obsInput = document.getElementById('obsInput');
 const quoteBtn = document.getElementById('quoteBtn');
-const routeCard = document.getElementById('routeCard');
-const routeVisual = document.getElementById('routeVisual');
-const flexFields = document.getElementById('flexFields');
-const dateIda = document.getElementById('dateIda');
-const dateVolta = document.getElementById('dateVolta');
-const flexIda = document.getElementById('flexIda');
-const flexVolta = document.getElementById('flexVolta');
-const flexCheck = document.getElementById('flexCheck');
-const momentoSelect = document.getElementById('momentoSelect');
-const paxTrigger = document.getElementById('paxTrigger');
-const paxPopover = document.getElementById('paxPopover');
-const paxSummary = document.getElementById('paxSummary');
-
-// Estado
-const pax = { adults: 1, children: 0, infants: 0 };
-let selectedOrig = { code: 'GRU', city: 'São Paulo' };
-let selectedDest = { code: 'LIS', city: 'Lisboa' };
-let activeAutocomplete = null;
-let activeIndex = -1;
+const formError = document.getElementById('formError');
 
 // ══════════════════════════════════════════════════════════════════════════════
-// AUTOCOMPLETE - Busca e filtragem de aeroportos
+// VALIDAÇÃO DE DATAS (fim não pode ser anterior ao início)
 // ══════════════════════════════════════════════════════════════════════════════
-function normalizeString(str) {
-  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-}
-
-function searchAirports(query, airportList, limit = 50) {
-  if (!query || query.length < 2) return [];
-
-  const normalized = normalizeString(query);
-  const results = [];
-
-  // Busca por código IATA exato primeiro
-  const exactCode = airportList.find(a => a.code.toLowerCase() === normalized);
-  if (exactCode) results.push(exactCode);
-
-  // Depois busca parcial
-  for (const airport of airportList) {
-    if (results.length >= limit) break;
-    if (results.includes(airport)) continue;
-
-    const cityNorm = normalizeString(airport.city);
-    const nameNorm = normalizeString(airport.name);
-    const codeNorm = airport.code.toLowerCase();
-
-    if (cityNorm.includes(normalized) ||
-        nameNorm.includes(normalized) ||
-        codeNorm.includes(normalized)) {
-      results.push(airport);
-    }
+dataInicio.addEventListener('change', () => {
+  dataFim.min = dataInicio.value;
+  if (dataFim.value && dataFim.value < dataInicio.value) {
+    dataFim.value = dataInicio.value;
   }
-
-  // Ordenar: major primeiro, depois alfabético
-  results.sort((a, b) => {
-    if (a.major && !b.major) return -1;
-    if (!a.major && b.major) return 1;
-    return a.city.localeCompare(b.city);
-  });
-
-  return results.slice(0, limit);
-}
-
-function renderAutocompleteList(airports, listEl, onSelect) {
-  if (airports.length === 0) {
-    listEl.innerHTML = '<div class="autocomplete-empty">Nenhum aeroporto encontrado</div>';
-    return;
-  }
-
-  listEl.innerHTML = airports.map((a, i) => `
-    <div class="autocomplete-item${a.major ? ' major' : ''}"
-         data-index="${i}"
-         data-code="${a.code}"
-         data-city="${a.city}"
-         role="option">
-      <span class="code">${a.code}</span>${a.city}<span class="country">${a.country}</span>
-    </div>
-  `).join('');
-
-  // Event listeners para cada item
-  listEl.querySelectorAll('.autocomplete-item').forEach(item => {
-    item.addEventListener('click', () => {
-      onSelect({ code: item.dataset.code, city: item.dataset.city });
-    });
-  });
-}
-
-function openAutocomplete(inputEl, listEl) {
-  listEl.classList.add('open');
-  inputEl.setAttribute('aria-expanded', 'true');
-  activeAutocomplete = { input: inputEl, list: listEl };
-  activeIndex = -1;
-}
-
-function closeAutocomplete(inputEl, listEl) {
-  listEl.classList.remove('open');
-  inputEl.setAttribute('aria-expanded', 'false');
-  if (activeAutocomplete?.input === inputEl) {
-    activeAutocomplete = null;
-    activeIndex = -1;
-  }
-}
-
-function closeAllAutocompletes() {
-  closeAutocomplete(origInput, origList);
-  closeAutocomplete(destInput, destList);
-}
-
-// ══════════════════════════════════════════════════════════════════════════════
-// AUTOCOMPLETE - Setup para Origem e Destino
-// ══════════════════════════════════════════════════════════════════════════════
-function setupAutocomplete(inputEl, listEl, airportList, onSelect) {
-  inputEl.addEventListener('input', () => {
-    const query = inputEl.value.trim();
-    if (query.length < 2) {
-      closeAutocomplete(inputEl, listEl);
-      return;
-    }
-    const results = searchAirports(query, airportList);
-    renderAutocompleteList(results, listEl, (selected) => {
-      onSelect(selected);
-      inputEl.value = `${selected.code} — ${selected.city}`;
-      closeAutocomplete(inputEl, listEl);
-    });
-    openAutocomplete(inputEl, listEl);
-  });
-
-  inputEl.addEventListener('focus', () => {
-    if (inputEl.value.length >= 2) {
-      const results = searchAirports(inputEl.value, airportList);
-      if (results.length) {
-        renderAutocompleteList(results, listEl, (selected) => {
-          onSelect(selected);
-          inputEl.value = `${selected.code} — ${selected.city}`;
-          closeAutocomplete(inputEl, listEl);
-        });
-        openAutocomplete(inputEl, listEl);
-      }
-    }
-  });
-
-  // Keyboard navigation
-  inputEl.addEventListener('keydown', (e) => {
-    if (!listEl.classList.contains('open')) return;
-
-    const items = listEl.querySelectorAll('.autocomplete-item');
-    if (!items.length) return;
-
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      activeIndex = Math.min(activeIndex + 1, items.length - 1);
-      updateActiveItem(items);
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      activeIndex = Math.max(activeIndex - 1, 0);
-      updateActiveItem(items);
-    } else if (e.key === 'Enter' && activeIndex >= 0) {
-      e.preventDefault();
-      items[activeIndex].click();
-    } else if (e.key === 'Escape') {
-      closeAutocomplete(inputEl, listEl);
-    }
-  });
-}
-
-function updateActiveItem(items) {
-  items.forEach((item, i) => {
-    item.classList.toggle('active', i === activeIndex);
-    if (i === activeIndex) item.scrollIntoView({ block: 'nearest' });
-  });
-}
-
-// ══════════════════════════════════════════════════════════════════════════════
-// ATUALIZAR CÓDIGOS EXIBIDOS E ANIMAÇÃO
-// ══════════════════════════════════════════════════════════════════════════════
-function updateRouteCodes() {
-  origCodeEl.textContent = selectedOrig.code;
-  destCodeEl.textContent = selectedDest.code;
-  restartPlaneAnimation();
-}
-
-// Reiniciar animação do avião ao trocar rota
-function restartPlaneAnimation() {
-  flyPlane.style.animation = 'none';
-  void flyPlane.offsetWidth; // Forçar reflow
-  flyPlane.style.animation = '';
-}
-
-// ══════════════════════════════════════════════════════════════════════════════
-// ATUALIZAR RESUMO DE PASSAGEIROS
-// ══════════════════════════════════════════════════════════════════════════════
-function updatePaxSummary() {
-  const parts = [];
-  if (pax.adults === 1) parts.push('1 adulto');
-  else if (pax.adults > 1) parts.push(`${pax.adults} adultos`);
-  if (pax.children === 1) parts.push('1 criança');
-  else if (pax.children > 1) parts.push(`${pax.children} crianças`);
-  if (pax.infants === 1) parts.push('1 bebê');
-  else if (pax.infants > 1) parts.push(`${pax.infants} bebês`);
-  paxSummary.textContent = parts.join(', ') || '1 adulto';
-
-  document.getElementById('adultsCount').textContent = pax.adults;
-  document.getElementById('childrenCount').textContent = pax.children;
-  document.getElementById('infantsCount').textContent = pax.infants;
-
-  document.querySelectorAll('.pax-btn[data-action="dec"]').forEach(btn => {
-    const type = btn.dataset.pax;
-    const min = type === 'adults' ? 1 : 0;
-    btn.disabled = pax[type] <= min;
-  });
-}
+});
 
 // ══════════════════════════════════════════════════════════════════════════════
 // FORMATAR DATA PARA EXIBIÇÃO (DD/MM/YYYY)
 // ══════════════════════════════════════════════════════════════════════════════
 function formatDate(dateStr) {
-  if (!dateStr) return null;
+  if (!dateStr) return '';
   const [y, m, d] = dateStr.split('-');
   return `${d}/${m}/${y}`;
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
-// MONTAR MENSAGEM WHATSAPP
+// VALIDAÇÃO DE CAMPOS
 // ══════════════════════════════════════════════════════════════════════════════
-function updateWhatsAppLink() {
-  // Passageiros
-  const paxParts = [];
-  if (pax.adults === 1) paxParts.push('1 adulto');
-  else if (pax.adults > 1) paxParts.push(`${pax.adults} adultos`);
-  if (pax.children === 1) paxParts.push('1 criança');
-  else if (pax.children > 1) paxParts.push(`${pax.children} crianças`);
-  if (pax.infants === 1) paxParts.push('1 bebê');
-  else if (pax.infants > 1) paxParts.push(`${pax.infants} bebês`);
-  const paxStr = paxParts.join(', ');
+function validateForm() {
+  const fields = [
+    { el: nomeInput, name: 'Nome' },
+    { el: motivoSelect, name: 'Motivo da viagem' },
+    { el: dataInicio, name: 'Início do compromisso' },
+    { el: cidadeInput, name: 'Cidade do compromisso' }
+  ];
 
-  // Montar mensagem base
-  let msg = `Olá! Quero uma cotação de ${selectedOrig.city} (${selectedOrig.code}) para ${selectedDest.city} (${selectedDest.code})`;
+  // Limpar estados anteriores
+  fields.forEach(f => f.el.closest('.rc-field').classList.remove('invalid'));
+  dataFim.closest('.rc-field').classList.remove('invalid');
+  formError.textContent = '';
 
-  // Datas
-  const idaFormatted = formatDate(dateIda.value);
-  const voltaFormatted = formatDate(dateVolta.value);
-
-  if (idaFormatted || voltaFormatted) {
-    msg += ` — ida: ${idaFormatted || 'a definir'}, volta: ${voltaFormatted || 'a definir'}`;
+  // Validar campos obrigatórios
+  for (const field of fields) {
+    if (!field.el.value.trim()) {
+      field.el.closest('.rc-field').classList.add('invalid');
+      formError.textContent = `Preencha o campo "${field.name}"`;
+      field.el.focus();
+      return false;
+    }
   }
 
-  // Flexibilidade (adicional, se marcada)
-  if (flexCheck.checked) {
-    const flexIdaVal = parseInt(flexIda.value, 10) || 0;
-    const flexVoltaVal = parseInt(flexVolta.value, 10) || 0;
-    msg += ` (flexibilidade: ±${flexIdaVal} dias na ida, ±${flexVoltaVal} dias na volta)`;
-  }
-
-  // Passageiros
-  msg += ` — passageiros: ${paxStr}`;
-
-  // Momento da compra
-  const momento = momentoSelect.value;
-  if (momento) {
-    msg += ` — momento: ${momento}`;
-  }
-
-  msg += '.';
-
-  quoteBtn.href = `https://wa.me/5516988126568?text=${encodeURIComponent(msg)}`;
+  return true;
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
-// FLEXIBILIDADE DE DATAS (mostra campos adicionais, não substitui)
+// ENVIAR PARA WHATSAPP
 // ══════════════════════════════════════════════════════════════════════════════
-function handleFlexChange() {
-  if (flexCheck.checked) {
-    flexFields.classList.add('visible');
+function sendToWhatsApp() {
+  if (!validateForm()) return;
+
+  const nome = nomeInput.value.trim();
+  const motivo = motivoSelect.value;
+  const inicio = formatDate(dataInicio.value);
+  const fim = formatDate(dataFim.value);
+  const cidade = cidadeInput.value.trim();
+  const obs = obsInput.value.trim();
+
+  let msg = `Olá! Vim pelo site – formulário do topo.\n\n`;
+  msg += `Nome: ${nome}\n`;
+  msg += `Motivo: ${motivo}\n`;
+
+  if (fim) {
+    msg += `Compromisso: ${cidade}, de ${inicio} a ${fim}`;
   } else {
-    flexFields.classList.remove('visible');
+    msg += `Compromisso: ${cidade}, em ${inicio}`;
   }
-  updateWhatsAppLink();
+
+  if (obs) {
+    msg += `\nObs.: ${obs}`;
+  }
+
+  const url = `https://wa.me/5516988126568?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
 }
+
+quoteBtn.addEventListener('click', sendToWhatsApp);
 
 // ══════════════════════════════════════════════════════════════════════════════
-// VALIDAÇÃO DE DATAS
+// DATA MÍNIMA = HOJE
 // ══════════════════════════════════════════════════════════════════════════════
-function validateDates() {
-  const today = new Date().toISOString().split('T')[0];
-
-  if (dateIda.value && dateIda.value < today) {
-    dateIda.value = today;
-  }
-
-  if (dateVolta.value && dateIda.value && dateVolta.value < dateIda.value) {
-    dateVolta.value = dateIda.value;
-  }
-
-  if (dateVolta.value && dateVolta.value < today) {
-    dateVolta.value = today;
-  }
-
-  dateVolta.min = dateIda.value || today;
-  updateWhatsAppLink();
-}
-
-// ══════════════════════════════════════════════════════════════════════════════
-// POPOVER DE PASSAGEIROS
-// ══════════════════════════════════════════════════════════════════════════════
-function togglePaxPopover() {
-  const isOpen = paxPopover.classList.toggle('open');
-  paxTrigger.setAttribute('aria-expanded', isOpen);
-}
-
-function closePaxPopover() {
-  paxPopover.classList.remove('open');
-  paxTrigger.setAttribute('aria-expanded', 'false');
-}
-
-function handlePaxButton(e) {
-  const btn = e.target.closest('.pax-btn');
-  if (!btn) return;
-  const type = btn.dataset.pax;
-  const action = btn.dataset.action;
-  const min = type === 'adults' ? 1 : 0;
-  const max = 9;
-
-  if (action === 'inc' && pax[type] < max) pax[type]++;
-  else if (action === 'dec' && pax[type] > min) pax[type]--;
-
-  updatePaxSummary();
-  updateWhatsAppLink();
-}
-
-// Fechar popovers ao clicar fora
-document.addEventListener('click', e => {
-  if (!paxPopover.contains(e.target) && !paxTrigger.contains(e.target)) {
-    closePaxPopover();
-  }
-  // Fechar autocompletes ao clicar fora
-  if (!origInput.contains(e.target) && !origList.contains(e.target)) {
-    closeAutocomplete(origInput, origList);
-  }
-  if (!destInput.contains(e.target) && !destList.contains(e.target)) {
-    closeAutocomplete(destInput, destList);
-  }
-});
-
-// Fechar com Escape
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    closePaxPopover();
-    closeAllAutocompletes();
-  }
-});
-
-// ══════════════════════════════════════════════════════════════════════════════
-// INICIALIZAÇÃO
-// ══════════════════════════════════════════════════════════════════════════════
-function init() {
-  // Verificar se dados de aeroportos carregaram
-  if (typeof AIRPORTS_BRAZIL === 'undefined' || typeof AIRPORTS_WORLD === 'undefined') {
-    console.error('Dados de aeroportos não carregados');
-    return;
-  }
-
-  // Setup autocomplete - Origem (Brasil)
-  setupAutocomplete(origInput, origList, AIRPORTS_BRAZIL, (selected) => {
-    selectedOrig = selected;
-    updateRouteCodes();
-    updateWhatsAppLink();
-  });
-
-  // Setup autocomplete - Destino (Brasil + Mundo)
-  setupAutocomplete(destInput, destList, [...AIRPORTS_BRAZIL, ...AIRPORTS_WORLD], (selected) => {
-    selectedDest = selected;
-    updateRouteCodes();
-    updateWhatsAppLink();
-  });
-
-  // Valores iniciais
-  origInput.value = `${selectedOrig.code} — ${selectedOrig.city}`;
-  destInput.value = `${selectedDest.code} — ${selectedDest.city}`;
-  updateRouteCodes();
-  updatePaxSummary();
-  updateWhatsAppLink();
-
-  // Data mínima = hoje
-  const today = new Date().toISOString().split('T')[0];
-  dateIda.min = today;
-  dateVolta.min = today;
-
-  // Event listeners
-  dateIda.addEventListener('change', validateDates);
-  dateVolta.addEventListener('change', validateDates);
-  flexIda.addEventListener('input', updateWhatsAppLink);
-  flexVolta.addEventListener('input', updateWhatsAppLink);
-  flexCheck.addEventListener('change', handleFlexChange);
-  momentoSelect.addEventListener('change', updateWhatsAppLink);
-  paxTrigger.addEventListener('click', togglePaxPopover);
-  paxPopover.addEventListener('click', handlePaxButton);
-}
-
-// Aguardar carregamento dos dados de aeroportos
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  init();
-}
+const today = new Date().toISOString().split('T')[0];
+dataInicio.min = today;
+dataFim.min = today;
 
 // ══════════════════════════════════════════════════════════════════════════════
 // HEADER SHRINK + REVEAL
@@ -1529,6 +1360,57 @@ if (audWrapper && !prefersReducedMotion) {
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
+// ANIMAÇÃO SEÇÃO "FEIRAS" - cards com stagger
+// ══════════════════════════════════════════════════════════════════════════════
+const feirasGrid = document.getElementById('feirasGrid');
+const feiraCards = document.querySelectorAll('.feira-card.reveal-card');
+
+if (feirasGrid && !prefersReducedMotion) {
+  const feirasObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          feiraCards.forEach((card, i) => {
+            setTimeout(() => card.classList.add('in'), i * 150);
+          });
+          feirasObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+  feirasObserver.observe(feirasGrid);
+} else if (feirasGrid) {
+  // Reduced motion: mostrar tudo imediatamente
+  feiraCards.forEach(card => card.classList.add('in'));
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MENU MOBILE TOGGLE
+// ══════════════════════════════════════════════════════════════════════════════
+const menuBtn = document.querySelector('.menu-btn');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('mobile-open');
+    menuBtn.classList.toggle('open');
+    menuBtn.innerHTML = navLinks.classList.contains('mobile-open') ? '&times;' : '&#9776;';
+    document.body.style.overflow = navLinks.classList.contains('mobile-open') ? 'hidden' : '';
+  });
+
+  // Fechar menu ao clicar em um link
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('mobile-open');
+      menuBtn.classList.remove('open');
+      menuBtn.innerHTML = '&#9776;';
+      document.body.style.overflow = '';
+    });
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
 // ANIMAÇÃO SEÇÃO "JORNADA" - scroll-linked plane + progress + dots
 // ══════════════════════════════════════════════════════════════════════════════
 const journeyTrack = document.getElementById('journeyTrack');
@@ -1570,9 +1452,9 @@ if (journeyTrack && !prefersReducedMotion) {
       progress = 1;
     }
 
-    // Atualizar altura do progresso
+    // Atualizar progresso (scaleY para performance)
     const progressHeight = progress * trackHeight;
-    trackProgress.style.height = progressHeight + 'px';
+    trackProgress.style.transform = `translateX(-50%) scaleY(${progress})`;
 
     // Atualizar posição do avião
     journeyPlane.style.top = progressHeight + 'px';
@@ -1608,7 +1490,7 @@ if (journeyTrack && !prefersReducedMotion) {
 
 } else if (journeyTrack) {
   // Reduced motion: mostrar tudo imediatamente
-  trackProgress.style.height = '100%';
+  trackProgress.style.transform = 'translateX(-50%) scaleY(1)';
   journeySteps.forEach(step => {
     step.classList.add('in');
     step.querySelector('.dot').classList.add('lit');
