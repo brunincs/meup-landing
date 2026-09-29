@@ -618,16 +618,6 @@ section{position:relative}
 .reveal{animation:jsFailsafe 0s 2s forwards}
 .reveal.in{animation:none}
 
-/* ---------- Manifesto ---------- */
-.manifesto{background:var(--roxo-profundo);text-align:center;position:relative;overflow:hidden}
-.manifesto::before{content:"\201C";position:absolute;top:20px;left:50%;transform:translateX(-50%);
-  font-family:var(--font-display);font-size:8rem;color:rgba(162,121,55,.1);line-height:1}
-.manifesto .wrap{position:relative;z-index:1;max-width:900px}
-.manifesto blockquote{font-family:var(--font-display);font-weight:500;font-style:italic;
-  font-size:clamp(1.4rem,2.9vw,2.2rem);line-height:1.42;color:var(--branco-gelo)}
-.manifesto blockquote b{color:var(--ouro-claro);font-style:normal}
-.manifesto .sig{margin-top:34px;font-family:var(--font-ui);font-size:.85rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cinza-rosado)}
-
 /* ---------- Seção Aline ---------- */
 .aline-section{background:var(--branco-gelo);color:var(--roxo-profundo)}
 .aline-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
@@ -739,7 +729,7 @@ section{position:relative}
 /* ---------- CTA final ---------- */
 .finalcta{background:linear-gradient(150deg,#3a1548,#25102f);border-radius:22px;padding:72px 32px;
   text-align:center;border:1px solid rgba(162,121,55,.28);box-shadow:0 50px 90px -50px rgba(0,0,0,.7)}
-.finalcta .eyebrow{margin-bottom:16px}
+.finalcta .eyebrow{margin-bottom:16px;font-size:13px}
 .finalcta h2{font-size:clamp(32px,4.5vw,52px);line-height:1.15;max-width:760px;margin:0 auto;text-wrap:balance;color:var(--branco-gelo)}
 .finalcta .btn{margin-top:40px;box-shadow:0 8px 20px -8px rgba(0,0,0,.4),0 0 32px -8px rgba(162,121,55,.5)}
 .finalcta .btn:hover{background:#8a6428}
@@ -1153,14 +1143,6 @@ footer{background:var(--grafite);padding:66px 0 34px;border-top:1px solid rgba(1
         <cite><strong>Cliente Me,up</strong> · viagem em família</cite>
       </article>
     </div>
-  </div>
-</section>
-
-<!-- MANIFESTO -->
-<section class="section-pad manifesto" id="manifesto">
-  <div class="wrap reveal">
-    <blockquote>Viajar não pode ser um risco. Somos a ponte entre o <b>compromisso</b> e o <b>destino</b> — com curadoria estratégica, economia real e suporte humano em cada etapa. Porque para quem não pode errar, confiança não é detalhe: é o diferencial que muda tudo.</blockquote>
-    <div class="sig">Me,up Viagens</div>
   </div>
 </section>
 
